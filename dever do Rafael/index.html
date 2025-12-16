@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adote um Amigo - Site de Adoção de pets</title>
+    <link rel="stylesheet" href="style.css">
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/pages/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/pages/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/pages/favicon-16x16.png">
+    <link rel="manifest" href="/pages/site.webmanifest">
+</head>
+<body>
+    <header>
+        <h1>Adote um Amigo</h1>
+        <p>Encontre seu companheiro perfeito!</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#adotar">Companheiros para Adoção</a></li>
+            <li><a href="#" id="add-animal-link">Adicionar Animal</a></li>
+            <li><a href="#sobre">Sobre Nós</a></li>
+            <li><a href="#processo">Processo de Adoção</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+    
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Dê um lar a um animal que precisa</h2>
+            <p>Centenas de animais esperam por uma segunda chance. Você pode mudar a vida de um deles!</p>
+            <a href="#adotar" class="btn">Ver Animais Disponíveis</a>
+        </div>
+    </section>
+    
+    <section id="adotar" class="container">
+        <h2 class="section-title">Animais para Adoção</h2>
+        <div class="pesquisa">
+            <input type="search" name="pesquisa" id="pes" placeholder="pesquise pelo nome ou descrição">
+            <select id="filtro-porte">
+                <option value="">Todos os Portes</option>
+                <option value="Pequeno">Pequeno</option>
+                <option value="Médio">Médio</option>
+                <option value="Grande">Grande</option>
+            </select>
+            <select id="filtro-idade">
+                <option value="">Todas as Idades</option>
+                <option value="Filhote">Filhote (até 1 ano)</option>
+                <option value="Adulto">Adulto (1-7 anos)</option>
+                <option value="Idoso">Idoso (7+ anos)</option>
+            </select>
+            <input type="button" value="pesquisar" id="bt">
+            <input type="button" value="Adicionar" id="bt2">
+        </div>
+        <div class="dogs-grid">
+            <!-- Os cards serão renderizados dinamicamente pelo JavaScript -->
+        </div>
+        
+        <!-- Modal para cadastro de animal -->
+        <div id="modalCadastro" class="modal">
+            <div class="modal-content">
+                <span id="fecharModal" class="close">&times;</span>
+                <h3>Adicionar Novo Animal</h3>
+                <form id="formCadastroAnimal">
+                    <div class="form-group">
+                        <label for="nomeAnimal">Nome:</label>
+                        <input type="text" id="nomeAnimal" name="nomeAnimal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idadeAnimal">Idade:</label>
+                        <input type="text" id="idadeAnimal" name="idadeAnimal" placeholder="Ex: 3 anos" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="porteAnimal">Porte:</label>
+                        <input type="text" id="porteAnimal" name="porteAnimal" placeholder="Ex: Porte médio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricaoAnimal">Descrição:</label>
+                        <textarea id="descricaoAnimal" name="descricaoAnimal" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagemAnimal">URL da Imagem:</label>
+                        <input type="url" id="imagemAnimal" name="imagemAnimal" placeholder="https://exemplo.com/imagem.jpg" required>
+                    </div>
+                    <button type="submit" class="btn">Cadastrar Animal</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal para edição de animal -->
+        <div id="modalEdicao" class="modal">
+            <div class="modal-content">
+                <span id="fecharModalEdicao" class="close">&times;</span>
+                <h3>Editar Animal</h3>
+                <form id="formEdicaoAnimal">
+                    <input type="hidden" id="editId" name="editId">
+                    <div class="form-group">
+                        <label for="editNomeAnimal">Nome:</label>
+                        <input type="text" id="editNomeAnimal" name="editNomeAnimal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editIdadeAnimal">Idade:</label>
+                        <input type="text" id="editIdadeAnimal" name="editIdadeAnimal" placeholder="Ex: 3 anos" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPorteAnimal">Porte:</label>
+                        <input type="text" id="editPorteAnimal" name="editPorteAnimal" placeholder="Ex: Porte médio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescricaoAnimal">Descrição:</label>
+                        <textarea id="editDescricaoAnimal" name="editDescricaoAnimal" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editImagemAnimal">URL da Imagem:</label>
+                        <input type="url" id="editImagemAnimal" name="editImagemAnimal" placeholder="https://exemplo.com/imagem.jpg" required>
+                    </div>
+                    <button type="submit" class="btn">Salvar Alterações</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <section id="processo" class="container">
+        <h2 class="section-title">Processo de Adoção</h2>
+        <div class="adoption-form">
+            <h3>Formulário de Interesse</h3>
+            <form id="form-adocao">
+                <div class="form-group">
+                    <label for="nome">Seu Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" required>
+                </div>
+                <div class="form-group">
+                    <label for="cachorro">Animal de interesse:</label>
+                    <select id="cachorro" name="cachorro" required>
+                        <option value="">Selecione um animal</option>
+                        <!-- Opções serão atualizadas dinamicamente pelo JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Por que você quer adotar este pet?</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Formulário</button>
+            </form>
+        </div>
+    </section>
+    
+    <section id="sobre" class="container">
+        <h2 class="section-title">Sobre Nós</h2>
+        <p>Somos uma organização sem fins lucrativos dedicada a resgatar animais abandonados e encontrar lares amorosos para eles. Desde 2025, já ajudamos mais de 1,000 animais a encontrarem suas famílias definitivas.</p>
+        <p>Nossos animais são vacinados, castrados e avaliados comportamentalmente antes de serem disponibilizados para adoção.</p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Adote um Amigo - Todos os direitos reservados</p>
+        <p>Contato: contato@adoteumamigo.com.br | (11) 1234-5678</p>
+    </footer>
+    
+    <script src="pet.js"></script>
+</body>
+</html>
